@@ -6,10 +6,10 @@ const showPhysicalMenu = ref(false)
 const activePhotoIndex = ref(0)
 
 const menuPhotos = [
-  '/src/img/menu1.jpeg',
-  '/src/img/menu2.jpeg',
-  '/src/img/menu3.jpeg',
-  '/src/img/menu4.jpeg'
+  '/img/menu1.jpeg',
+  '/img/menu2.jpeg',
+  '/img/menu3.jpeg',
+  '/img/menu4.jpeg'
 ]
 
 const categories = [

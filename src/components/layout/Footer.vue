@@ -9,7 +9,7 @@ const year = new Date().getFullYear()
       <div class="flex flex-col md:flex-row items-center justify-between gap-6">
         <!-- Brand -->
         <div class="flex items-center gap-3">
-          <img src="/src/img/LogoGinger.png" alt="Ginger Bistro" class="h-8 w-auto opacity-80" />
+          <img src="/img/LogoGinger.png" alt="Ginger Bistro" class="h-8 w-auto opacity-80" />
           <div class="w-px h-6 bg-[rgba(200,146,42,0.3)]"></div>
           <p class="font-body text-xs text-[#a89880] tracking-widest uppercase">Bistronomia</p>
         </div>

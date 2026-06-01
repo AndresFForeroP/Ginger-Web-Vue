@@ -70,7 +70,7 @@ onUnmounted(() => observer.disconnect())
             <div class="absolute inset-0 border border-[rgba(200,146,42,0.2)] rounded-sm translate-x-4 translate-y-4"></div>
             <div class="relative h-full rounded-sm overflow-hidden bg-[#1a1714]">
               <img
-                src="/src/img/Fondo1.jpg"
+                src="/img/Fondo1.jpg"
                 alt="Ginger Bistro ambiente"
                 class="w-full h-full object-cover opacity-80"
               />

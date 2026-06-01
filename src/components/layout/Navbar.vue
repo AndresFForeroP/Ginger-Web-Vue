@@ -36,7 +36,7 @@ onUnmounted(() => window.removeEventListener('scroll', handleScroll))
       <!-- Logo -->
       <a href="#hero" @click="closeMenu" class="flex items-center gap-3 group" aria-label="Ginger Bistro inicio">
         <img
-          src="/src/img/LogoGinger.png"
+          src="/img/LogoGinger.png"
           alt="Ginger Bistro Logo"
           class="h-16 w-auto transition-transform duration-300 group-hover:scale-105"
         />

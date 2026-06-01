@@ -26,7 +26,7 @@ onUnmounted(() => observer.disconnect())
         <!-- Left side: image -->
         <div class="w-full md:w-1/2 aspect-[16/10] md:aspect-auto md:h-64 overflow-hidden relative">
           <img 
-            src="/src/img/seccionredes.jpeg" 
+            src="/img/seccionredes.jpeg" 
             alt="Ginger Bistro Redes Sociales" 
             class="w-full h-full object-cover filter brightness-75 hover:scale-105 transition-transform duration-700"
           />

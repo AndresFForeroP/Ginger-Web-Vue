@@ -12,8 +12,8 @@ onMounted(() => {
   <section id="hero" class="relative min-h-screen flex items-center justify-center overflow-hidden">
     <!-- Background image with opacity and initial zoom-out animation -->
     <div
-      class="absolute inset-0 bg-cover bg-[center_20%] bg-no-repeat opacity-45 "
-      style="background-image: url('/src/img/Fondo1.jpg')"
+      class="absolute inset-0 bg-cover bg-[center_20%] bg-no-repeat opacity-45 zoom-bg"
+      style="background-image: url('/img/Fondo1.jpg')"
     ></div>
 
     <!-- Gradient overlays for cinematic effect -->
@@ -37,7 +37,7 @@ onMounted(() => {
       <!-- Logo with glow -->
       <div class="flex justify-center mb-8">
         <img
-          src="/src/img/LogoGinger.png"
+          src="/img/LogoGinger.png"
           alt="Ginger Bistro"
           class="h-28 md:h-36 w-auto drop-shadow-[0_0_20px_rgba(200,146,42,0.25)] transition-all duration-700 hover:scale-105"
         />
