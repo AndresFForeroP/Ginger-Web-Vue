@@ -78,16 +78,21 @@ onUnmounted(() => observer.disconnect())
             </div>
 
             <!-- Stats floating card -->
-            <div class="absolute -bottom-8 -left-8 bg-[#1a1714] border border-[rgba(200,146,42,0.2)] p-6 rounded-sm shadow-2xl">
+            <div class="absolute -bottom-8 left-3 px-10 bg-[#1a1714] border border-[rgba(200,146,42,0.2)] p-6 rounded-sm shadow-2xl">
               <div class="flex gap-8">
                 <div class="text-center">
-                  <p class="font-display text-3xl font-semibold text-[#c8922a]">+3</p>
+                  <p class="font-display text-3xl font-semibold text-[#c8922a]">+9</p>
                   <p class="font-body text-xs text-[#a89880] tracking-wider uppercase mt-1">Años</p>
                 </div>
                 <div class="w-px bg-[rgba(200,146,42,0.2)]"></div>
                 <div class="text-center">
-                  <p class="font-display text-3xl font-semibold text-[#c8922a]">★ 4.8</p>
-                  <p class="font-body text-xs text-[#a89880] tracking-wider uppercase mt-1">Rating</p>
+                  <p class="font-display text-3xl font-semibold text-[#c8922a]">★ 4.7 </p>
+                  <p class="font-body text-xs text-[#a89880] tracking-wider uppercase mt-1">Rating Google </p>
+                </div>
+                <div class="w-px bg-[rgba(200,146,42,0.2)]"></div>
+                <div class="text-center">
+                  <p class="font-display text-3xl font-semibold text-[#c8922a]">+ 320 </p>
+                  <p class="font-body text-xs text-[#a89880] tracking-wider uppercase mt-1">Reseñas </p>
                 </div>
               </div>
             </div>

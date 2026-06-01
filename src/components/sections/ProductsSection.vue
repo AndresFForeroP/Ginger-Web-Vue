@@ -68,7 +68,7 @@ onUnmounted(() => observer.disconnect())
           <!-- Category chips -->
           <div class="flex flex-wrap gap-3 mb-10">
             <span
-              v-for="cat in ['Entrantes', 'Platos principales', 'Postres', 'Bebidas', 'Cócteles']"
+              v-for="cat in ['Burgers', 'Sándwiches', 'Hot Dogs', 'Alitas & Costillas', 'Bebidas']"
               :key="cat"
               class="font-body text-xs tracking-wider uppercase px-4 py-2 border border-[rgba(200,146,42,0.3)] text-[#c8922a] rounded-sm hover:bg-[rgba(200,146,42,0.1)] transition-colors duration-300 cursor-default"
             >

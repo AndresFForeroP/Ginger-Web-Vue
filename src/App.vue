@@ -5,6 +5,7 @@ import AboutSection from './components/sections/AboutSection.vue'
 import ProductsSection from './components/sections/ProductsSection.vue'
 import MenuSection from './components/sections/MenuSection.vue'
 import ContactSection from './components/sections/ContactSection.vue'
+import SocialSection from './components/sections/SocialSection.vue'
 import MapSection from './components/sections/MapSection.vue'
 import Footer from './components/layout/Footer.vue'
 </script>
@@ -18,6 +19,7 @@ import Footer from './components/layout/Footer.vue'
       <ProductsSection />
       <MenuSection />
       <ContactSection />
+      <SocialSection />
       <MapSection />
     </main>
     <Footer />

@@ -10,15 +10,15 @@ onMounted(() => {
 
 <template>
   <section id="hero" class="relative min-h-screen flex items-center justify-center overflow-hidden">
-    <!-- Background image -->
+    <!-- Background image with opacity and initial zoom-out animation -->
     <div
-      class="absolute inset-0 bg-cover bg-center bg-no-repeat"
+      class="absolute inset-0 bg-cover bg-[center_20%] bg-no-repeat opacity-45 "
       style="background-image: url('/src/img/Fondo1.jpg')"
     ></div>
 
     <!-- Gradient overlays for cinematic effect -->
-    <div class="absolute inset-0 bg-gradient-to-b from-[#0d0c0b]/70 via-[#0d0c0b]/40 to-[#0d0c0b]"></div>
-    <div class="absolute inset-0 bg-gradient-to-r from-[#0d0c0b]/60 via-transparent to-[#0d0c0b]/30"></div>
+    <div class="absolute inset-0 bg-gradient-to-b from-[#0d0c0b]/80 via-[#0d0c0b]/40 to-[#0d0c0b]"></div>
+    <div class="absolute inset-0 bg-gradient-to-r from-[#0d0c0b]/70 via-transparent to-[#0d0c0b]/40"></div>
 
     <!-- Subtle grain texture overlay -->
     <div class="absolute inset-0 opacity-[0.03]" style="background-image: url('data:image/svg+xml,%3Csvg viewBox=%220 0 200 200%22 xmlns=%22http://www.w3.org/2000/svg%22%3E%3Cfilter id=%22n%22%3E%3CfeTurbulence type=%22fractalNoise%22 baseFrequency=%221%22 numOctaves=%224%22/%3E%3C/filter%3E%3Crect width=%22100%25%22 height=%22100%25%22 filter=%22url(%23n)%22/%3E%3C/svg%3E'); background-size: 200px 200px;"></div>
@@ -34,17 +34,17 @@ onMounted(() => {
         Bistronomia · Pamplona, Colombia
       </div>
 
-      <!-- Logo -->
+      <!-- Logo with glow -->
       <div class="flex justify-center mb-8">
         <img
           src="/src/img/LogoGinger.png"
           alt="Ginger Bistro"
-          class="h-24 md:h-32 w-auto drop-shadow-2xl"
+          class="h-28 md:h-36 w-auto drop-shadow-[0_0_20px_rgba(200,146,42,0.25)] transition-all duration-700 hover:scale-105"
         />
       </div>
 
       <!-- Headline -->
-      <h1 class="font-display text-5xl md:text-7xl lg:text-8xl font-light text-[#f5f0e8] leading-[0.9] tracking-tight mb-4">
+      <h1 class="font-display text-5xl md:text-7xl lg:text-8xl font-light text-[#f5f0e8] leading-[0.9] tracking-tight mb-4 shimmer-text">
         Lugar <em class="italic text-[#c8922a]">sencillo</em>,
         <br />
         <span class="font-semibold">comida excepcional</span>
@@ -58,10 +58,10 @@ onMounted(() => {
       <!-- CTAs -->
       <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
         <a
-          href="#products"
+          href="#menu-digital"
           class="font-body text-sm tracking-widest uppercase px-8 py-3.5 bg-[#c8922a] text-[#0d0c0b] font-medium hover:bg-[#e8b04a] transition-all duration-300 rounded-sm shadow-[0_0_30px_rgba(200,146,42,0.3)] hover:shadow-[0_0_40px_rgba(200,146,42,0.5)]"
         >
-          Ver Productos
+          Ver Menú
         </a>
         <a
           href="#about"
@@ -79,3 +79,28 @@ onMounted(() => {
     </div>
   </section>
 </template>
+
+<style scoped>
+@keyframes zoomBackground {
+  0% {
+    transform: scale(1.15);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+@keyframes shimmerGold {
+  0%, 100% {
+    text-shadow: 0 0 10px rgba(200, 146, 42, 0);
+  }
+  50% {
+    text-shadow: 0 0 25px rgba(200, 146, 42, 0.3);
+  }
+}
+.zoom-bg {
+  animation: zoomBackground 8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+.shimmer-text {
+  animation: shimmerGold 5s ease-in-out infinite;
+}
+</style>
