@@ -1,18 +1,47 @@
-<script setup>
+<script setup lang="ts">
 import { ref } from 'vue'
 
-const activeCategory = ref('burgers')
-const showPhysicalMenu = ref(false)
-const activePhotoIndex = ref(0)
+interface Category {
+  id: string
+  label: string
+  iconName: string
+  title: string
+  desc: string
+}
 
-const menuPhotos = [
+interface MenuItem {
+  name: string
+  price: string
+  desc?: string
+}
+
+interface Adicion {
+  name: string
+  price: string
+}
+
+interface Cerveza {
+  name: string
+}
+
+interface CategoryMenuItems {
+  items: MenuItem[]
+  adiciones?: Adicion[]
+  cervezas?: Cerveza[]
+}
+
+const activeCategory = ref<string>('burgers')
+const showPhysicalMenu = ref<boolean>(false)
+const activePhotoIndex = ref<number>(0)
+
+const menuPhotos: string[] = [
   '/img/menu1.jpeg',
   '/img/menu2.jpeg',
   '/img/menu3.jpeg',
   '/img/menu4.jpeg'
 ]
 
-const categories = [
+const categories: Category[] = [
   { 
     id: 'entradas', 
     label: 'Entradas & Adiciones', 
@@ -64,7 +93,7 @@ const categories = [
   }
 ]
 
-const menuItems = {
+const menuItems: Record<string, CategoryMenuItems> = {
   entradas: {
     items: [
       { name: 'Delicioso Chilli Cremoso', price: '$12.000', desc: 'Acompañado de crujiente guacamole y crujientes nachos artesanales.' },
@@ -173,14 +202,14 @@ const nextPhoto = () => {
       <div class="flex justify-center gap-4 mb-16">
         <button
           @click="showPhysicalMenu = false"
-          class="font-body text-xs tracking-widest uppercase px-6 py-3 border rounded-sm transition-all duration-300"
+          class="font-body text-xs tracking-widest uppercase px-6 py-3 border rounded-sm transition-all duration-300 cursor-pointer"
           :class="!showPhysicalMenu ? 'bg-[#c8922a] border-[#c8922a] text-[#0d0c0b] font-medium' : 'border-[rgba(245,240,232,0.2)] text-[#f5f0e8] hover:border-[#c8922a]'"
         >
           Menú Digital
         </button>
         <button
           @click="showPhysicalMenu = true"
-          class="font-body text-xs tracking-widest uppercase px-6 py-3 border rounded-sm transition-all duration-300"
+          class="font-body text-xs tracking-widest uppercase px-6 py-3 border rounded-sm transition-all duration-300 cursor-pointer"
           :class="showPhysicalMenu ? 'bg-[#c8922a] border-[#c8922a] text-[#0d0c0b] font-medium' : 'border-[rgba(245,240,232,0.2)] text-[#f5f0e8] hover:border-[#c8922a]'"
         >
           Menú Físico
@@ -195,7 +224,7 @@ const nextPhoto = () => {
             v-for="cat in categories"
             :key="cat.id"
             @click="activeCategory = cat.id"
-            class="flex items-center gap-2 px-4 py-3 rounded-sm font-body text-xs tracking-widest uppercase border transition-all duration-300"
+            class="flex items-center gap-2 px-4 py-3 rounded-sm font-body text-xs tracking-widest uppercase border transition-all duration-300 cursor-pointer"
             :class="activeCategory === cat.id ? 'border-[#c8922a] bg-[rgba(200,146,42,0.1)] text-[#e8b04a]' : 'border-transparent text-[#a89880] hover:text-[#f5f0e8]'"
           >
             <!-- Tiny Category SVG Icon -->
@@ -316,50 +345,73 @@ const nextPhoto = () => {
 
       <!-- PHYSICAL MENU GALLERY VIEW -->
       <div v-else class="transition-all duration-500">
-        <div class="relative max-w-xl mx-auto border border-[rgba(200,146,42,0.2)] rounded-sm overflow-hidden bg-[#1a1714]">
-          <!-- Top corners decoration -->
-          <div class="absolute top-0 left-0 w-4 h-4 border-t-2 border-l-2 border-[#c8922a] z-10"></div>
-          <div class="absolute top-0 right-0 w-4 h-4 border-t-2 border-r-2 border-[#c8922a] z-10"></div>
+        <div class="relative max-w-xl mx-auto">
+          <!-- Outer border decoration (matching products and promotions) -->
+          <div class="absolute inset-0 border border-[rgba(200,146,42,0.15)] rounded-sm -translate-x-3 -translate-y-3 pointer-events-none md:-translate-x-4 md:-translate-y-4"></div>
 
-          <!-- Carousel Container with sliding animation -->
-          <div class="relative aspect-[3/4] flex items-center justify-center overflow-hidden">
-            <Transition
-              mode="out-in"
-              enter-active-class="transition-all duration-300 ease-out"
-              enter-from-class="opacity-0 scale-95"
-              enter-to-class="opacity-100 scale-100"
-              leave-active-class="transition-all duration-200 ease-in"
-              leave-from-class="opacity-100 scale-100"
-              leave-to-class="opacity-0 scale-95"
-            >
-              <img
-                :key="activePhotoIndex"
-                :src="menuPhotos[activePhotoIndex]"
-                alt="Página de Menú Físico"
-                class="w-full h-full object-contain"
-              />
-            </Transition>
-          </div>
+          <!-- Main frame -->
+          <div class="relative rounded-sm overflow-hidden aspect-[3/4] bg-[#100e0c] border border-[rgba(200,146,42,0.15)] shadow-[0_15px_40px_rgba(0,0,0,0.6)]">
+            <!-- Top corners decoration -->
+            <div class="absolute top-0 left-0 w-4 h-4 border-t-2 border-l-2 border-[#c8922a] z-20"></div>
+            <div class="absolute top-0 right-0 w-4 h-4 border-t-2 border-r-2 border-[#c8922a] z-20"></div>
 
-          <!-- Navigation controls overlay -->
-          <div class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/90 to-transparent p-6 flex items-center justify-between">
+            <!-- Image Container with blurred background (for premium cinematic look) -->
+            <div class="w-full h-full relative flex items-center justify-center overflow-hidden bg-[#100e0c]">
+              <Transition
+                mode="out-in"
+                enter-active-class="transition-all duration-500 ease-out"
+                enter-from-class="opacity-0 scale-95"
+                enter-to-class="opacity-100 scale-100"
+                leave-active-class="transition-all duration-300 ease-in"
+                leave-from-class="opacity-100 scale-100"
+                leave-to-class="opacity-0 scale-95"
+              >
+                <div :key="activePhotoIndex" class="w-full h-full relative flex items-center justify-center">
+                  <!-- Blurred background copy -->
+                  <img
+                    :src="menuPhotos[activePhotoIndex]"
+                    class="absolute inset-0 w-full h-full object-cover blur-3xl opacity-35 scale-110 pointer-events-none"
+                    alt=""
+                  />
+                  <!-- Sharp centered image -->
+                  <img
+                    :src="menuPhotos[activePhotoIndex]"
+                    alt="Página de Menú Físico"
+                    class="relative max-w-full max-h-full object-contain z-10 shadow-2xl"
+                  />
+                </div>
+              </Transition>
+            </div>
+
+            <!-- Gradient overlay for premium cinema look -->
+            <div class="absolute inset-0 bg-gradient-to-t from-[#0d0c0b]/50 via-transparent to-[#0d0c0b]/10 pointer-events-none z-10"></div>
+
+            <!-- Controls: Left Arrow -->
             <button
               @click="prevPhoto"
-              class="w-10 h-10 rounded-full border border-[rgba(200,146,42,0.3)] flex items-center justify-center text-[#c8922a] hover:bg-[#c8922a] hover:text-[#0d0c0b] transition-all duration-300"
-              aria-label="Foto anterior"
+              class="absolute left-3 md:left-5 top-1/2 -translate-y-1/2 w-10 h-10 md:w-12 md:h-12 rounded-full border border-[rgba(200,146,42,0.3)] bg-[#0d0c0b]/75 flex items-center justify-center text-[#c8922a] hover:bg-[#c8922a] hover:text-[#0d0c0b] transition-all duration-300 z-20 group cursor-pointer"
+              aria-label="Página anterior"
             >
-              ←
+              <svg class="w-4 h-4 md:w-5 md:h-5 transition-transform duration-300 group-hover:-translate-x-0.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" />
+              </svg>
             </button>
-            <span class="font-body text-xs tracking-widest text-[#a89880]">
-              Página {{ activePhotoIndex + 1 }} de {{ menuPhotos.length }}
-            </span>
+
+            <!-- Controls: Right Arrow -->
             <button
               @click="nextPhoto"
-              class="w-10 h-10 rounded-full border border-[rgba(200,146,42,0.3)] flex items-center justify-center text-[#c8922a] hover:bg-[#c8922a] hover:text-[#0d0c0b] transition-all duration-300"
-              aria-label="Siguiente foto"
+              class="absolute right-3 md:right-5 top-1/2 -translate-y-1/2 w-10 h-10 md:w-12 md:h-12 rounded-full border border-[rgba(200,146,42,0.3)] bg-[#0d0c0b]/75 flex items-center justify-center text-[#c8922a] hover:bg-[#c8922a] hover:text-[#0d0c0b] transition-all duration-300 z-20 group cursor-pointer"
+              aria-label="Siguiente página"
             >
-              →
+              <svg class="w-4 h-4 md:w-5 md:h-5 transition-transform duration-300 group-hover:translate-x-0.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
+              </svg>
             </button>
+
+            <!-- Floating page counter (matching PromotionsSection) -->
+            <div class="absolute bottom-4 right-4 bg-[#0d0c0b]/80 border border-[rgba(200,146,42,0.2)] px-3 py-1 rounded-sm text-[10px] md:text-xs font-body tracking-widest text-[#e8b04a] z-20">
+              {{ activePhotoIndex + 1 }} / {{ menuPhotos.length }}
+            </div>
           </div>
         </div>
 
@@ -369,7 +421,7 @@ const nextPhoto = () => {
             v-for="(photo, index) in menuPhotos"
             :key="index"
             @click="activePhotoIndex = index"
-            class="w-2.5 h-2.5 rounded-full transition-all duration-300"
+            class="w-2.5 h-2.5 rounded-full transition-all duration-300 cursor-pointer"
             :class="activePhotoIndex === index ? 'bg-[#c8922a] w-6' : 'bg-gray-700 hover:bg-gray-500'"
             :aria-label="'Ir a página ' + (index + 1)"
           ></button>
@@ -386,3 +438,6 @@ const nextPhoto = () => {
     </div>
   </section>
 </template>
+
+<style scoped>
+</style>
