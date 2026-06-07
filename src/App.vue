@@ -1,8 +1,9 @@
-<script setup>
+<script setup lang="ts">
 import Navbar from './components/layout/Navbar.vue'
 import HeroSection from './components/sections/HeroSection.vue'
 import AboutSection from './components/sections/AboutSection.vue'
 import ProductsSection from './components/sections/ProductsSection.vue'
+import PromotionsSection from './components/sections/PromotionsSection.vue'
 import MenuSection from './components/sections/MenuSection.vue'
 import ContactSection from './components/sections/ContactSection.vue'
 import SocialSection from './components/sections/SocialSection.vue'
@@ -17,6 +18,7 @@ import Footer from './components/layout/Footer.vue'
       <HeroSection />
       <AboutSection />
       <ProductsSection />
+      <PromotionsSection />
       <MenuSection />
       <ContactSection />
       <SocialSection />

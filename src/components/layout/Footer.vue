@@ -1,4 +1,4 @@
-<script setup>
+<script setup lang="ts">
 const WHATSAPP_URL = 'https://wa.me/message/LMMFBEAWLY4DH1'
 const year = new Date().getFullYear()
 </script>
@@ -7,16 +7,22 @@ const year = new Date().getFullYear()
   <footer class="relative bg-[#0a0908] border-t border-[rgba(200,146,42,0.15)]">
     <div class="max-w-7xl mx-auto px-6 py-12">
       <div class="flex flex-col md:flex-row items-center justify-between gap-6">
-        <!-- Brand -->
-        <div class="flex items-center gap-3">
-          <img src="/img/LogoGinger.png" alt="Ginger Bistro" class="h-8 w-auto opacity-80" />
-          <div class="w-px h-6 bg-[rgba(200,146,42,0.3)]"></div>
-          <p class="font-body text-xs text-[#a89880] tracking-widest uppercase">Bistronomia</p>
+        <!-- Brand & Hours -->
+        <div class="flex flex-col items-center md:flex-row gap-4">
+          <div class="flex items-center gap-3">
+            <img src="/img/LogoGinger.png" alt="Ginger Bistro" class="h-8 w-auto opacity-80" />
+            <div class="w-px h-6 bg-[rgba(200,146,42,0.3)]"></div>
+            <p class="font-body text-xs text-[#a89880] tracking-widest uppercase">Bistronomia</p>
+          </div>
+          <div class="hidden md:block w-px h-6 bg-[rgba(200,146,42,0.15)]"></div>
+          <p class="font-body text-[10px] text-[#a89880]/75 tracking-widest uppercase text-center md:text-left">
+            Mar a Dom: 6:00 PM - 10:00 PM
+          </p>
         </div>
 
         <!-- Quick links -->
-        <ul class="flex items-center gap-6 font-body" role="list">
-          <li v-for="link in [['Inicio', '#hero'], ['Nosotros', '#about'], ['Productos', '#products'], ['Contacto', '#contact']]" :key="link[0]">
+        <ul class="flex flex-wrap justify-center items-center gap-6 font-body" role="list">
+          <li v-for="link in [['Inicio', '#hero'], ['Nosotros', '#about'], ['Productos', '#products'], ['Promociones', '#promotions'], ['Contacto', '#contact']]" :key="link[0]">
             <a
               :href="link[1]"
               class="text-xs tracking-widest uppercase text-[#a89880] hover:text-[#c8922a] transition-colors duration-300"
@@ -29,7 +35,7 @@ const year = new Date().getFullYear()
           :href="WHATSAPP_URL"
           target="_blank"
           rel="noopener noreferrer"
-          class="flex items-center gap-2 font-body text-xs tracking-widest uppercase text-[#a89880] hover:text-[#25D366] transition-colors duration-300"
+          class="flex items-center gap-2 font-body text-xs tracking-widest uppercase text-[#a89880] hover:text-[#25D366] transition-colors duration-300 cursor-pointer"
           aria-label="WhatsApp Ginger Bistro"
         >
           <svg class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor">

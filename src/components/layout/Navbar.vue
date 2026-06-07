@@ -1,14 +1,21 @@
-<script setup>
+<script setup lang="ts">
 import { ref, onMounted, onUnmounted } from 'vue'
+
+interface NavLink {
+  label: string
+  href: string
+}
 
 const isScrolled = ref(false)
 const isMobileMenuOpen = ref(false)
 
-const navLinks = [
+const navLinks: NavLink[] = [
   { label: 'Inicio', href: '#hero' },
   { label: 'Nosotros', href: '#about' },
+  { label: 'Productos', href: '#products' },
+  { label: 'Promociones', href: '#promotions' },
   { label: 'Menú', href: '#menu-digital' },
-  { label: 'Contacto', href: '#contact' },
+  { label: 'Contacto', href: '#contact' }
 ]
 
 const handleScroll = () => {
@@ -43,7 +50,7 @@ onUnmounted(() => window.removeEventListener('scroll', handleScroll))
       </a>
 
       <!-- Desktop nav -->
-      <ul class="hidden md:flex items-center gap-10 font-body" role="list">
+      <ul class="hidden lg:flex items-center gap-8 xl:gap-10 font-body" role="list">
         <li v-for="link in navLinks" :key="link.href">
           <a
             :href="link.href"
@@ -57,7 +64,7 @@ onUnmounted(() => window.removeEventListener('scroll', handleScroll))
       <!-- CTA reserva -->
       <a
         href="#contact"
-        class="hidden md:inline-flex items-center gap-2 font-body text-sm tracking-wider uppercase px-5 py-2 border border-[#c8922a] text-[#c8922a] hover:bg-[#c8922a] hover:text-[#0d0c0b] transition-all duration-300 rounded-sm"
+        class="hidden md:inline-flex items-center gap-2 font-body text-sm tracking-wider uppercase px-5 py-2 border border-[#c8922a] text-[#c8922a] hover:bg-[#c8922a] hover:text-[#0d0c0b] transition-all duration-300 rounded-sm cursor-pointer"
       >
         Reservar
       </a>
@@ -65,7 +72,7 @@ onUnmounted(() => window.removeEventListener('scroll', handleScroll))
       <!-- Mobile hamburger -->
       <button
         @click="toggleMenu"
-        class="md:hidden flex flex-col gap-1.5 p-2 group"
+        class="lg:hidden flex flex-col gap-1.5 p-2 group cursor-pointer"
         :aria-expanded="isMobileMenuOpen"
         aria-label="Abrir menú"
       >
@@ -95,7 +102,7 @@ onUnmounted(() => window.removeEventListener('scroll', handleScroll))
     >
       <div
         v-if="isMobileMenuOpen"
-        class="md:hidden bg-[#0d0c0b]/98 backdrop-blur-md border-t border-[rgba(200,146,42,0.2)]"
+        class="lg:hidden bg-[#0d0c0b]/98 backdrop-blur-md border-t border-[rgba(200,146,42,0.2)]"
       >
         <ul class="flex flex-col py-6 px-6 gap-6 font-body" role="list">
           <li v-for="link in navLinks" :key="link.href">
@@ -111,7 +118,7 @@ onUnmounted(() => window.removeEventListener('scroll', handleScroll))
             <a
               href="#contact"
               @click="closeMenu"
-              class="inline-flex items-center gap-2 font-body text-sm tracking-wider uppercase px-5 py-2 border border-[#c8922a] text-[#c8922a] rounded-sm"
+              class="inline-flex items-center gap-2 font-body text-sm tracking-wider uppercase px-5 py-2 border border-[#c8922a] text-[#c8922a] rounded-sm cursor-pointer"
             >
               Reservar
             </a>
