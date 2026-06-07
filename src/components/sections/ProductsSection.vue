@@ -192,7 +192,7 @@ onUnmounted(() => {
           <p class="font-body text-[#a89880] text-base md:text-lg leading-relaxed mb-8">
             Nuestra carta es una celebración de los sabores locales e internacionales,
             elaborados con ingredientes de primera calidad y la pasión de nuestro equipo.
-            Desde entrantes creativos hasta postres artesanales, cada plato es una obra
+            Desde entradas creativas hasta hamburguesas Gourmet, cada plato es una obra
             diseñada para sorprenderte.
           </p>
 
